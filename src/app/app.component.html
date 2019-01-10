@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-success" (click)="cargarDatos()">Cargar datos</button>
+      <button class="btn btn-success" (click)="cargaParcial()">Cargar Parcial</button>
+    </div>
+    <form class="col-8" #f="ngForm">
+      <div class="form-group">
+        <input type="text" ngModel placeholder="Nombre Completo" name="nombre" required #nombre="ngModel">
+        <span *ngIf="nombre.invalid && nombre.touched">El nombre es requerido.</span>
+      </div>
+      <div class="form-group">
+        <input type="text" ngModel placeholder="Correo" name="correo" required email #correo="ngModel">
+        <span *ngIf="!correo.valid && correo.touched && correo.errors.required">El correo es requerido.</span>
+        <span *ngIf="!correo.valid && correo.touched && correo.errors.email">El formato es incorrecto.</span>
+      </div>
+      <div class="form-group">
+        <input type="password" ngModel placeholder="Contraseña" name="contrasena" required minlength="4" #contrasena='ngModel'>
+        <span *ngIf='!contrasena.valid && contrasena.minlength'></span>
+      </div>
+      <div class="form-group">
+        <!-- <button type="button"   class="btn btn-primary btn-block" (click)="grabar()" [disabled]="!f.valid">Loguear</button> -->
+        <button   class="btn btn-primary btn-block" ngSubmit="grabar()" [disabled]="!f.valid">Loguear</button>
+      </div>
+    </form>
+  </div>
+</div>

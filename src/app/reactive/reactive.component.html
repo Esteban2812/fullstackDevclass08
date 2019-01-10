@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <button class="btn btn-success" (click)="cargarDatos()">Cargar datos</button>
+        <button class="btn btn-success" (click)="cargaParcial()">Cargar Parcial</button>
+      </div>
+      <form class="col-8" #f="ngForm" [formGroup]="group" (ngSubmit)="grabar()">
+        <div class="form-group">
+          <input type="text" placeholder="Nombre Completo" formControlName="nombre">
+          <span *ngIf="group.get('nombre').hasError('required') && group.get('nombre').touched">El Nombre es requerido</span>
+        </div>
+        <div class="form-group">
+          <input type="text" ngModel placeholder="Correo" formControlName="correo">
+          <span *ngIf="group.get('correo').hasError('required') && group.get('correo').touched">El Nombre es requerido</span>
+          <span *ngIf="group.get('correo').email && group.get('correo').touched">El Nombre es requerido</span>
+        </div>
+        <div class="form-group">
+          <input type="password"  placeholder="Contraseña" formControlName="contrasena" >
+        </div>
+        <div class="form-group">
+          <!-- <button type="button"   class="btn btn-primary btn-block" (click)="grabar()" [disabled]="!f.valid">Loguear</button> -->
+          <button [disabled]="!group.valid"  class="btn btn-primary btn-block">Loguear</button>
+        </div>
+      </form>
+    </div>
+  </div>
